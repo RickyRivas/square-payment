@@ -1,0 +1,455 @@
+main#home {
+  /* ============================================ */
+  /*                 Landing                      */
+  /* ============================================ */
+  /* ============================================ */
+  /*                 intro                        */
+  /* ============================================ */
+  /* ============================================ */
+  /*                3 Services                    */
+  /* ============================================ */
+}
+main#home #landing {
+  height: 730px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-gray);
+  position: relative;
+}
+@media (min-width: 768px) {
+  main#home #landing {
+    min-height: 900px;
+  }
+}
+@media only screen and (max-width: 47.975em) {
+  main#home #landing {
+    font-size: 0.9em;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 48em) {
+  main#home #landing {
+    font-size: 1.7vw;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 64em) {
+  main#home #landing {
+    font-size: inherit;
+    min-height: 850px;
+  }
+}
+main#home #landing .content {
+  color: white;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: auto 0;
+  padding: 0.5em;
+}
+main#home #landing .content h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  line-height: 1.1;
+  color: #fff;
+}
+main#home #landing .content h1::after {
+  content: '';
+  width: 2em;
+  background-color: var(--primary-color);
+  height: 4px;
+  margin: 0.2em auto 0.2em;
+  display: flex;
+  flex-direction: column;
+}
+main#home #landing .content p {
+  margin-bottom: 0.5em;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #fff;
+}
+main#home #landing .content .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+main#home #landing .content .btns a {
+  box-shadow: none;
+}
+main#home #landing .content .btns a:nth-child(1) {
+  background-color: var(--primary-color);
+  position: relative;
+  overflow: hidden;
+  color: white;
+  transition: all 0.8s;
+}
+main#home #landing .content .btns a:nth-child(1):hover {
+  transition: all 0.8s;
+  color: black;
+  background-color: white;
+}
+main#home #landing picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+main#home #landing picture img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+main#home #landing .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  background-color: black;
+  opacity: 60%;
+}
+main#home #layout01 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  padding: 5em 0;
+}
+@media only screen and (max-width: 47.975em) {
+  main#home #layout01 .container {
+    font-size: 1em;
+  }
+}
+@media only screen and (min-width: 48em) {
+  main#home #layout01 .container {
+    font-size: 1.7vw;
+  }
+}
+@media only screen and (min-width: 64em) {
+  main#home #layout01 .container {
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 1.3vw;
+    padding: 7em 0;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  main#home #layout01 .container {
+    font-size: inherit;
+  }
+}
+main#home #layout01 .container .img-container {
+  display: block;
+  position: relative;
+  margin: 0 0 2em 0;
+}
+@media only screen and (min-width: 64em) {
+  main#home #layout01 .container .img-container {
+    margin: 0 5em 0 0;
+  }
+}
+main#home #layout01 .container .img-container img {
+  width: 27em;
+  height: auto;
+}
+@media only screen and (max-width: 767px) {
+  main#home #layout01 .container .img-container img {
+    width: 19em;
+  }
+}
+main#home #layout01 .container .img-container::before {
+  content: '';
+  background-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -1em;
+  left: -1em;
+  z-index: -1;
+}
+main#home #layout01 .container .content {
+  width: 100%;
+  max-width: 32.5em;
+  padding: 1em;
+}
+@media only screen and (min-width: 64em) {
+  main#home #layout01 .container .content {
+    padding: 0;
+  }
+}
+main#home #layout01 .container .content h2 {
+  text-transform: capitalize;
+  margin-bottom: 1em;
+  font-size: 2.3em;
+  letter-spacing: 0.02em;
+  font-weight: bold;
+  line-height: 1;
+}
+main#home #layout01 .container .content p {
+  margin-bottom: 1em;
+}
+main#home #layout01 .container .content p.list-head {
+  margin-bottom: 0.5em;
+}
+main#home #layout01 .container .content ul {
+  margin: 0 0 1em 1em;
+}
+main#home #layout01 .container .content ul li {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 0 0.5em;
+}
+main#home #layout01 .container .content ul li img {
+  margin: 0.15em 0.5em 0 0em;
+  width: 1em;
+  height: 1em;
+}
+main#home #layout01 .container .content .btns {
+  display: flex;
+}
+main#home #layout01 .container .content .btns a {
+  width: 8em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, var(--primary-color), #333);
+  border-radius: 0.5em;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75em;
+  transition: all 0.5s;
+}
+main#home #layout01 .container .content .btns a:hover {
+  background: linear-gradient(45deg, #333, var(--primary-color));
+}
+main#home #services {
+  display: block;
+  position: relative;
+}
+@media only screen and (max-width: 47.975em) {
+  main#home #services {
+    font-size: 1em;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 48em) {
+  main#home #services {
+    font-size: 1.9vw;
+    margin-top: -5em;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 64em) {
+  main#home #services {
+    font-size: inherit;
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+main#home #services .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  padding: 2em 1em;
+  border-radius: 0.5em;
+}
+@media only screen and (min-width: 768px) {
+  main#home #services .container {
+    flex-direction: row;
+    width: 98%;
+  }
+}
+main#home #services .container .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0.5em 0em;
+  margin-bottom: 1em;
+}
+@media only screen and (max-width: 47.975em) {
+  main#home #services .container .item:nth-last-of-type(1) {
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 48em) {
+  main#home #services .container .item {
+    max-width: 16.25em;
+  }
+}
+main#home #services .container .item .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  padding: 1em;
+  margin-bottom: 0.5em;
+}
+main#home #services .container .item .icon img {
+  width: 2.5em;
+  height: 2.5em;
+  filter: invert(1);
+}
+main#home #services .container .item h2 {
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
+}
+#layout02 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  padding: 5em 0;
+}
+@media only screen and (max-width: 47.975em) {
+  #layout02 .container {
+    font-size: 1em;
+  }
+}
+@media only screen and (min-width: 48em) {
+  #layout02 .container {
+    font-size: 1.7vw;
+  }
+}
+@media only screen and (min-width: 64em) {
+  #layout02 .container {
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 1.3vw;
+    padding: 7em 0;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #layout02 .container {
+    font-size: inherit;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  #layout02 .container .img-container {
+    order: 1;
+  }
+  #layout02 .container .content {
+    order: 2;
+  }
+}
+#layout02 .container .img-container {
+  display: block;
+  position: relative;
+}
+@media only screen and (max-width: 1024px) {
+  #layout02 .container .img-container {
+    margin-bottom: 1em;
+  }
+}
+#layout02 .container .img-container img {
+  width: 27em;
+  height: auto;
+}
+@media only screen and (max-width: 767px) {
+  #layout02 .container .img-container img {
+    width: 19em;
+  }
+}
+#layout02 .container .img-container::before {
+  content: '';
+  background-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  z-index: -1;
+}
+#layout02 .container .content {
+  width: 100%;
+  max-width: 32.5em;
+  padding: 1em;
+  margin: 0 0 2em 0;
+}
+@media only screen and (min-width: 64em) {
+  #layout02 .container .content {
+    margin: 0 5em 0 0;
+  }
+}
+@media only screen and (min-width: 64em) {
+  #layout02 .container .content {
+    padding: 0;
+  }
+}
+#layout02 .container .content h2 {
+  text-transform: capitalize;
+  margin-bottom: 1em;
+  font-size: 2.3em;
+  letter-spacing: 0.02em;
+  font-weight: bold;
+  line-height: 1;
+}
+#layout02 .container .content p {
+  margin-bottom: 1em;
+}
+#layout02 .container .content p.list-head {
+  margin-bottom: 0.5em;
+}
+#layout02 .container .content ul {
+  margin: 0 0 1em 1em;
+}
+#layout02 .container .content ul li {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 0 0.5em;
+}
+#layout02 .container .content ul li img {
+  margin: 0.15em 0.5em 0 0em;
+  width: 1em;
+  height: 1em;
+}
+#layout02 .container .content .btns {
+  display: flex;
+}
+#layout02 .container .content .btns a {
+  width: 8em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, var(--primary-color), #333);
+  border-radius: 0.5em;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75em;
+  transition: all 0.5s;
+}
+#layout02 .container .content .btns a:hover {
+  background: linear-gradient(45deg, #333, var(--primary-color));
+}

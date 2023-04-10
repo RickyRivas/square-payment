@@ -1,0 +1,259 @@
+main#contact {
+  width: 100%;
+  position: relative;
+}
+@media only screen and (max-width: 47.975em) {
+  main#contact {
+    font-size: 3.2vw;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 48em) {
+  main#contact {
+    font-size: 1.7vw;
+    /* mintab 480w */
+  }
+}
+@media only screen and (min-width: 64em) {
+  main#contact {
+    font-size: inherit;
+    /* custom opt-out 979oo */
+  }
+}
+main#contact .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2em 1em;
+  max-width: 57.5em;
+  margin: 0 auto 1em;
+}
+@media only screen and (min-width: 48em) {
+  main#contact .container {
+    padding: 5em 1em;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+@media only screen and (min-width: 64em) {
+  main#contact .container {
+    padding: 5em 0;
+  }
+}
+main#contact .container .info {
+  width: 100%;
+  padding: 2em 2em;
+  margin: 0 0 0em;
+  background-color: #f8f9fa;
+  border-radius: 0.5em;
+}
+@media only screen and (min-width: 48em) {
+  main#contact .container .info {
+    max-width: 25em;
+    margin: 0 0em 0 0;
+  }
+}
+main#contact .container .info ul li {
+  list-style: none;
+  margin-bottom: 1em;
+}
+main#contact .container .info ul li strong {
+  font-size: 0.9em;
+}
+main#contact .container .info ul li p {
+  font-size: 0.9em;
+  margin: 0;
+  color: #202020;
+}
+main#contact .container .info ul li a,
+main#contact .container .info ul li .hr {
+  color: #202020;
+  text-decoration: none;
+  font-size: 0.8em;
+}
+main#contact .container .info ul li a {
+  color: var(--primary-color);
+}
+main#contact .container .form-container {
+  width: 100%;
+  max-width: 30em;
+  margin-bottom: 3em;
+}
+main#contact .container .form-container h2 {
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
+}
+main#contact .container .form-container p {
+  margin-bottom: 2em;
+  font-size: 0.9em;
+  width: 90%;
+}
+main#contact .container .form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+@media only screen and (min-width: 48em) {
+  main#contact .container .form-container form {
+    border-radius: 0.5em;
+    box-shadow: var(--box-shadow);
+    padding: 2em;
+  }
+}
+main#contact .container .form-container form .form-control {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1em;
+}
+main#contact .container .form-container form .form-control label {
+  color: #202020;
+  font-size: 0.9em;
+  margin-bottom: 0.2em;
+}
+@media only screen and (max-width: 768px) {
+  main#contact .container .form-container form .form-control label {
+    font-size: 17px;
+  }
+}
+main#contact .container .form-container form .form-control input[type='text'],
+main#contact .container .form-container form .form-control input[type='number'],
+main#contact .container .form-container form .form-control input[type='email'],
+main#contact .container .form-container form .form-control select {
+  border: 0;
+  padding: 0.5em;
+  color: #202020;
+  outline: none;
+  position: relative;
+  width: 100%;
+  display: block;
+  font-size: 0.9em;
+  font-family: inherit;
+  caret-color: black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.2em;
+  transition: border 0.33s ease;
+}
+@media only screen and (max-width: 600px) {
+  main#contact .container .form-container form .form-control input[type='text'],
+  main#contact .container .form-container form .form-control input[type='number'],
+  main#contact .container .form-container form .form-control input[type='email'],
+  main#contact .container .form-container form .form-control select {
+    font-size: 16px;
+  }
+}
+main#contact .container .form-container form .form-control input[type='text']::placeholder,
+main#contact .container .form-container form .form-control input[type='number']::placeholder,
+main#contact .container .form-container form .form-control input[type='email']::placeholder,
+main#contact .container .form-container form .form-control select::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+}
+main#contact .container .form-container form .form-control input[type='text']:focus,
+main#contact .container .form-container form .form-control input[type='number']:focus,
+main#contact .container .form-container form .form-control input[type='email']:focus,
+main#contact .container .form-container form .form-control select:focus,
+main#contact .container .form-container form .form-control input[type='text']:active,
+main#contact .container .form-container form .form-control input[type='number']:active,
+main#contact .container .form-container form .form-control input[type='email']:active,
+main#contact .container .form-container form .form-control select:active {
+  border: 1px solid var(--primary-color);
+}
+main#contact .container .form-container form .form-control textarea {
+  resize: none;
+  border: 0;
+  padding: 0.5em;
+  outline: none;
+  font-size: 0.9em;
+  color: #202020;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.2em;
+  font-family: inherit;
+}
+@media only screen and (max-width: 767px) {
+  main#contact .container .form-container form .form-control textarea {
+    font-size: 16px;
+  }
+}
+main#contact .container .form-container form .form-control textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+  font-style: normal;
+}
+main#contact .container .form-container form .form-control textarea:focus,
+main#contact .container .form-container form .form-control textarea:active {
+  border: 1px solid var(--primary-color);
+}
+main#contact .container .form-container form .form-control select {
+  width: 100%;
+  padding: 1em;
+  -webkit-appearance: none;
+  background-image: url(/down-chevron.svg);
+  background-position: right 0.75em center;
+  background-repeat: no-repeat;
+  background-size: 0.7em;
+  background-color: white;
+  border-radius: 0;
+}
+main#contact .container .form-container form .form-control select:active,
+main#contact .container .form-container form .form-control select:hover {
+  border-bottom: 1px solid --main-primary-color;
+}
+main#contact .container .form-container form .form-control.active::before {
+  width: 100%;
+}
+main#contact .container .form-container form #submit {
+  padding: 1em;
+  border: 0;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  width: 100%;
+  transition: background-color 0.33s ease;
+  position: relative;
+  background-color: var(--primary-color);
+  overflow: hidden;
+  border-radius: 0.2em;
+}
+main#contact .container .form-container form #submit span {
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+main#contact .container .form-container form #submit::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  transition: all 0.33s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: block;
+  background: #202020;
+  transform: translateY(-100%);
+  border-radius: 0.2em;
+}
+main#contact .container .form-container form #submit:hover::before {
+  transform: translateY(0);
+}
+main#contact .map {
+  width: 100%;
+  max-width: 60em;
+  margin: auto;
+  height: 15em;
+  position: relative;
+  display: block;
+}
+main#contact .map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

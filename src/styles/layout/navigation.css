@@ -1,0 +1,345 @@
+header {
+  width: 100vw;
+  background-color: #f8f9fa;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  box-shadow: var(--box-shadow);
+}
+header.isActive {
+  box-shadow: none;
+}
+header .nav-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0em;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.5s;
+  pointer-events: none;
+}
+header .nav-overlay.isActive {
+  opacity: 1;
+  pointer-events: all;
+}
+@media only screen and (min-width: 64em) {
+  header .nav-overlay {
+    display: none;
+  }
+  header.isActive {
+    background-color: #f8f9fa;
+    position: fixed;
+  }
+}
+header .contactinfo {
+  background-color: rgba(0, 0, 0, 0.05);
+  display: block;
+  padding: 0.2em;
+}
+@media only screen and (max-width: 1023px) {
+  header .contactinfo {
+    display: none;
+  }
+}
+header .contactinfo .container {
+  width: 100%;
+  max-width: 60em;
+  margin: auto;
+  padding: 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .contactinfo .container .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .contactinfo .container .info a {
+  color: #202020;
+  text-decoration: none;
+  font-size: 0.75em;
+  margin-right: 1em;
+  transition: color 0.33s ease;
+}
+header .contactinfo .container .info a:nth-last-child(1) {
+  margin: 0;
+}
+header .contactinfo .container .info a:hover {
+  color: var(--primary-color);
+}
+header .contactinfo .container .socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .contactinfo .container .socials > a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5em;
+}
+header .contactinfo .container .socials > a img {
+  width: 1em;
+  height: 1em;
+}
+header nav {
+  width: 100%;
+  max-width: 60em;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  z-index: 2;
+}
+header nav a.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav a.logo svg {
+  height: 2em;
+  width: auto;
+  transition: all 0.5s;
+}
+header nav .inner-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 75vw;
+  height: 100%;
+  background-color: #f4f4f4;
+  padding: 9em 0em 5em 0em;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  transform: translateX(100%);
+  top: 0;
+  right: 0;
+  overflow: auto;
+  z-index: 500;
+}
+@media only screen and (min-width: 768px) {
+  header nav .inner-nav {
+    width: 50vw;
+  }
+}
+@media only screen and (min-width: 64em) {
+  header nav .inner-nav {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    position: relative;
+    transform: none;
+    padding: 0;
+  }
+  header nav .inner-nav.isActive {
+    transform: none;
+  }
+}
+header nav .inner-nav.isActive {
+  transform: translateX(0%);
+}
+header nav .inner-nav #cta {
+  margin: 0 0.5em;
+}
+@media only screen and (max-width: 1023px) {
+  header nav .inner-nav #cta {
+    display: none;
+  }
+}
+header nav .inner-nav #cta:hover {
+  background-color: #202020;
+  color: white;
+}
+header nav ul.links {
+  position: relative;
+  padding: 0em;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: transparent;
+  z-index: 1;
+  display: flex;
+}
+header nav ul.links li.link {
+  list-style: none;
+  width: 100%;
+  border-bottom: 1px solid #D9D9D7;
+  display: block;
+  position: relative;
+}
+header nav ul.links li.link a {
+  color: #202020;
+  text-decoration: none;
+  text-align: left;
+  transition: color 0.5s;
+  padding: 1em 0 1em 1em;
+  display: block;
+  text-transform: capitalize;
+  font-size: 1.1em;
+}
+@media only screen and (min-width: 64em) {
+  header nav ul.links li.link a {
+    font-size: 1em;
+  }
+  header nav ul.links li.link a::after {
+    content: '';
+    width: 0%;
+    height: 0.1em;
+    position: absolute;
+    left: 0%;
+    bottom: 0em;
+    background-color: var(--primary-color);
+    transition: width 0.33s ease;
+  }
+}
+header nav ul.links li.link.active a,
+header nav ul.links li.link:hover a {
+  color: var(--primary-color) !important;
+}
+header nav ul.links li.link.active a::after,
+header nav ul.links li.link:hover a::after {
+  width: 100%;
+}
+header nav ul.links li.link.social {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+}
+header nav ul.links li.link.social a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1em;
+  position: relative;
+  width: auto;
+  font-size: 1em;
+}
+header nav ul.links li.link.social a p {
+  width: auto;
+}
+header nav ul.links li.link.social a img {
+  width: 1em;
+  margin-right: 0.2em;
+}
+@media only screen and (min-width: 64em) {
+  header nav ul.links {
+    flex-direction: row;
+    width: auto;
+  }
+  header nav ul.links li.link {
+    border: 0;
+    padding: 0;
+    margin: 0 0.5em;
+    width: auto;
+  }
+  header nav ul.links li.link a {
+    padding: 0;
+  }
+  header nav ul.links li.link.social {
+    display: none;
+  }
+}
+header nav .hamburger {
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+  z-index: 9999;
+}
+@media only screen and (min-width: 64em) {
+  header nav .hamburger {
+    display: none;
+  }
+}
+header nav .hamburger:hover {
+  opacity: 0.7;
+}
+header nav .hamburger.isActive:hover {
+  opacity: 0.7;
+}
+header nav .hamburger.isActive .hamburger-inner,
+header nav .hamburger.isActive .hamburger-inner::before,
+header nav .hamburger.isActive .hamburger-inner::after {
+  background-color: #000;
+}
+header nav .hamburger-box {
+  width: 30px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+header nav .hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+header nav .hamburger-inner,
+header nav .hamburger-inner::before,
+header nav .hamburger-inner::after {
+  width: 30px;
+  height: 0.15em;
+  background-color: #000;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+header nav .hamburger-inner::before,
+header nav .hamburger-inner::after {
+  content: "";
+  display: block;
+}
+header nav .hamburger-inner::before {
+  top: -8px;
+}
+header nav .hamburger-inner::after {
+  bottom: -8px;
+}
+.hamburger--squeeze .hamburger-inner {
+  transition-duration: 0.075s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.hamburger--squeeze .hamburger-inner::before {
+  transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+}
+.hamburger--squeeze .hamburger-inner::after {
+  transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.hamburger--squeeze.isActive .hamburger-inner {
+  transform: rotate(45deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.hamburger--squeeze.isActive .hamburger-inner::before {
+  top: 0;
+  opacity: 0;
+  transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+}
+.hamburger--squeeze.isActive .hamburger-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+  transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}

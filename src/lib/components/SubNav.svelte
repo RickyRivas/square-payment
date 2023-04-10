@@ -1,0 +1,68 @@
+<script lang="ts">
+	// components
+	// stores
+	// styles
+	// logic
+	// props
+	export let pageTitle: any;
+</script>
+
+<section id="subheader">
+	<img aria-hidden="true" src="/twig.png" alt="twig" class="abs-head" width="100" height="139" />
+	<h1>{pageTitle}</h1>
+	<div class="overlay" />
+</section>
+
+<style lang="less">
+	#subheader {
+		height: 15rem;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		padding-bottom: 3rem;
+		position: relative;
+		background: url(/img08m.webp) center / cover no-repeat;
+
+		h1 {
+			font-size: 2em;
+			letter-spacing: 2px;
+			color: white;
+			position: relative;
+			z-index: 3;
+			text-transform: capitalize;
+		}
+
+		.abs-head {
+			position: absolute;
+			// height: 8em;
+			max-width: 100%;
+			bottom: 1.5em;
+			z-index: 2;
+		}
+
+		.overlay {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			object-fit: cover;
+			background-color: black;
+			opacity: 60%;
+		}
+	}
+
+	@media (min-width: 768px) {
+		#subheader {
+			height: 15rem;
+			background: url(/img08l.webp) center / cover no-repeat;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		#subheader {
+			height: 18rem;
+			// background-attachment: fixed;
+		}
+	}
+</style>
