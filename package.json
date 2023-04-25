@@ -33,6 +33,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"swiper": "^8.4.5"
+		"dotenv": "^16.0.3",
+		"square": "^26.0.0",
+		"swiper": "^8.4.5",
+		"uuid": "^9.0.0"
 	}
 }

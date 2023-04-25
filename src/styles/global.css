@@ -99,3 +99,196 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 767px) {
+  .modal {
+    font-size: 0.9em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .modal {
+    font-size: 1.7vw;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .modal {
+    font-size: inherit;
+    padding: 5em 0;
+  }
+}
+.modal .container {
+  width: 25em;
+  height: 25em;
+  background-color: white;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-bottom: 10px solid #202020;
+  transition: border-color 0.33s ease;
+}
+.modal .container.success {
+  border-color: #2A7D2E;
+}
+.modal .container.fail {
+  border-color: #ef233c;
+}
+.modal .container p {
+  text-align: center;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+@media only screen and (max-width: 767px) {
+  .modal .container p {
+    font-size: 18px;
+  }
+}
+.modal .container img {
+  width: 4em;
+  height: auto;
+  margin-bottom: 1em;
+  animation: rotate 10s ease infinite;
+}
+.modal .container h2 {
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 1em;
+  font-weight: 400;
+  font-size: 1.5em;
+  width: 100%;
+  text-transform: capitalize;
+}
+.modal .container .btns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.modal .container .btns .modal-btn {
+  font: inherit;
+  font-size: 1em;
+  background-color: var(--primary-color);
+  border: 0;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  width: 100%;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.33s ease;
+}
+.modal .container .btns .modal-btn:nth-child(1) {
+  margin-bottom: 0.5em;
+}
+.modal .container .btns .modal-btn:hover {
+  background-color: #202020;
+}
+.modal .container .lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2em;
+}
+.modal .container .lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.modal .container .lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  margin: -4px 0 0 -4px;
+}
+.modal .container .lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.modal .container .lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.modal .container .lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.modal .container .lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.modal .container .lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.modal .container .lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.modal .container .lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.modal .container .lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.modal .container .lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.modal .container .lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.modal .container .lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.modal .container .lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.modal .container .lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.modal .container .lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.modal .container .lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.modal .container .lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

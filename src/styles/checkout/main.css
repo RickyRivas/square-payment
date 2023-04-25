@@ -1,0 +1,139 @@
+main#checkout {
+  width: 100%;
+  position: relative;
+  padding: 3em 1em;
+}
+@media only screen and (max-width: 767px) {
+  main#checkout {
+    font-size: 1em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  main#checkout {
+    font-size: 1.7vw;
+    padding: 5em 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  main#checkout {
+    font-size: inherit;
+  }
+}
+main#checkout .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 60em;
+  margin: 0 auto 1em;
+}
+main#checkout .container h2.section-title {
+  font-size: 1.25em;
+  line-height: 1.2;
+  margin-bottom: 0.8em;
+}
+main#checkout .container .card-container-wrap {
+  width: 100%;
+  max-width: 26.5em;
+  background-color: #edf2f4;
+  padding: 2em;
+  box-shadow: var(--box-shadow);
+}
+@media only screen and (max-width: 479px) {
+  main#checkout .container .card-container-wrap {
+    max-width: 100%;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form .form-control {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1em;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control.no-margin {
+  margin-bottom: 0;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control label {
+  color: #202020;
+  font-size: 0.8em;
+  margin-bottom: 0.2em;
+}
+@media only screen and (max-width: 768px) {
+  main#checkout .container .card-container-wrap #payment-form .form-control label {
+    font-size: 17px;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text'],
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number'],
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email'],
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel'],
+main#checkout .container .card-container-wrap #payment-form .form-control select {
+  border: 0;
+  padding: 0.7em;
+  color: #202020;
+  outline: none;
+  position: relative;
+  width: 100%;
+  display: block;
+  font-size: 0.8em;
+  font-family: inherit;
+  caret-color: black;
+  border-radius: 0;
+  transition: border 0.33s ease;
+  background-color: #fff;
+  border: 1px solid transparent;
+}
+@media only screen and (max-width: 600px) {
+  main#checkout .container .card-container-wrap #payment-form .form-control input[type='text'],
+  main#checkout .container .card-container-wrap #payment-form .form-control input[type='number'],
+  main#checkout .container .card-container-wrap #payment-form .form-control input[type='email'],
+  main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel'],
+  main#checkout .container .card-container-wrap #payment-form .form-control select {
+    font-size: 16px;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text']::placeholder,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number']::placeholder,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email']::placeholder,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel']::placeholder,
+main#checkout .container .card-container-wrap #payment-form .form-control select::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text']:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number']:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email']:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel']:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control select:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text']:active,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number']:active,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email']:active,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel']:active,
+main#checkout .container .card-container-wrap #payment-form .form-control select:active {
+  border: 1px solid #202020;
+}
+main#checkout .container .card-container-wrap #payment-form #card-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 0;
+  font: inherit;
+  color: white;
+  background-color: #202020;
+  font-size: 0.65em;
+  text-transform: uppercase;
+  transition: background-color 0.33s ease;
+}
+@media only screen and (max-width: 600px) {
+  main#checkout .container .card-container-wrap #payment-form #card-btn {
+    font-size: 13px;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form #card-btn:hover,
+main#checkout .container .card-container-wrap #payment-form #card-btn:focus-visible {
+  background-color: var(--primary-color);
+}

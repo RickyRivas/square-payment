@@ -1,0 +1,132 @@
+// Contact Us Page
+main#checkout {
+    width: 100%;
+    position: relative;
+    padding: 3em 1em;
+
+    @media only screen and (max-width: 767px) {
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 768px) {
+        font-size: 1.7vw;
+        padding: 5em 0;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        font-size: inherit;
+    }
+
+
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: (1200/20em);
+        margin: 0 auto 1em;
+
+        h2.section-title {
+            font-size: (25/20em);
+            line-height: 1.2;
+            margin-bottom: (20/25em);
+        }
+
+        .card-container-wrap {
+            width: 100%;
+            max-width: (530/20em);
+            background-color: #edf2f4;
+            padding: 2em;
+            box-shadow: var(--box-shadow);
+
+            @media only screen and (max-width: 479px) {
+                max-width: 100%;
+            }
+
+            #payment-form {
+                .form-control {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    position: relative;
+                    margin-bottom: 1em;
+
+                    &.no-margin {
+                        margin-bottom: 0;
+                    }
+
+                    label {
+                        color: #202020;
+                        font-size: (16/20em);
+                        margin-bottom: .2em;
+
+                        @media only screen and (max-width: 768px) {
+                            font-size: 17px;
+                        }
+                    }
+
+                    input[type='text'],
+                    input[type='number'],
+                    input[type='email'],
+                    input[type='tel'],
+                    select {
+                        border: 0;
+                        padding: .7em;
+                        color: #202020;
+                        outline: none;
+                        position: relative;
+                        width: 100%;
+                        display: block;
+                        font-size: (16/20em);
+                        font-family: inherit;
+                        caret-color: black;
+                        border-radius: 0;
+                        transition: border .33s ease;
+                        background-color: #fff;
+                        border: 1px solid transparent;
+
+                        @media only screen and (max-width: 600px) {
+                            font-size: 16px;
+                        }
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, .4);
+                            font-weight: 400;
+                        }
+
+                        &:focus,
+                        &:active {
+                            border: 1px solid #202020;
+                        }
+                    }
+
+                }
+
+                #card-btn {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1em;
+                    border: 0;
+                    font: inherit;
+                    color: white;
+                    background-color: #202020;
+                    font-size: (13/20em);
+                    text-transform: uppercase;
+                    transition: background-color .33s ease;
+
+                    @media only screen and (max-width: 600px) {
+                        font-size: 13px;
+                    }
+
+                    &:hover,
+                    &:focus-visible {
+                        background-color: var(--primary-color);
+                    }
+                }
+            }
+        }
+    }
+}
