@@ -19,11 +19,11 @@
 	let company_name: string | undefined;
 	let email_address: string | undefined;
 	let address = {
-		addressLine1: '5924 E King PL',
-		addressLine2: 'Titties Street',
+		addressLine1: '',
+		addressLine2: '',
 		administrativeDistrictLevel1: 'AL',
-		administrativeDistrictLevel2: 'Tulsa',
-		postalCode: '74115',
+		administrativeDistrictLevel2: '',
+		postalCode: '',
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
@@ -83,11 +83,11 @@
 			card = await payments.card({
 				style: {
 					input: {
-						backgroundColor: '#ffffff'
+						backgroundColor: '#f5f7f9'
 					},
 					'.input-container': {
 						borderColor: 'transparent',
-						borderRadius: '0'
+						borderRadius: '.25em'
 					}
 				}
 			});
