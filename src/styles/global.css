@@ -113,7 +113,7 @@ input[type=number] {
 }
 @media only screen and (max-width: 767px) {
   .modal {
-    font-size: 0.9em;
+    font-size: 1em;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -128,7 +128,7 @@ input[type=number] {
   }
 }
 .modal .container {
-  width: 25em;
+  width: 20em;
   height: 25em;
   background-color: white;
   border-radius: 0.5em;
@@ -182,12 +182,12 @@ input[type=number] {
 }
 .modal .container .btns .modal-btn {
   font: inherit;
-  font-size: 1em;
+  font-size: 0.9em;
   background-color: var(--primary-color);
   border: 0;
   color: white;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
+  padding: 0.75em;
+  border-radius: 0;
   width: 100%;
   text-transform: capitalize;
   display: flex;

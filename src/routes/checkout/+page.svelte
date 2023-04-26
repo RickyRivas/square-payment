@@ -2,6 +2,7 @@
 	// Components
 	import SubNav from '$lib/components/SubNav.svelte';
 	let pageTitle = 'Checkout';
+	import currency from '../currency';
 
 	// styles
 	import '$styles/checkout/main.css';
@@ -25,6 +26,7 @@
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
+	let referenceId: string | undefined;
 
 	async function handlePaymentMethodSubmission(paymentMethod) {
 		showModal = true;
@@ -108,7 +110,7 @@
 			body: JSON.stringify({
 				locationId: LOCATION_ID,
 				sourceId: token,
-				amount: 100,
+				amount,
 				email_address,
 				given_name,
 				family_name,
@@ -152,6 +154,20 @@
 		msg = '';
 		showModal = false;
 	}
+
+	// Convert amount to $
+	let amount: number | undefined = 1;
+	let displayTotalAmount: any;
+	let displayInputAmount: any = currency(amount)?.format();
+
+	function convertAmountForDisplay() {
+		displayInputAmount = currency(displayInputAmount)?.format();
+	}
+
+	$: displayTotalAmount = currency(displayInputAmount)?.format();
+	$: amount = currency(displayInputAmount)?.intValue;
+	// $: console.log(`DTA: ${displayTotalAmount}, DIA: ${displayInputAmount}, Amount: ${amount}`);
+	// $: console.log(amount);
 </script>
 
 {#if showModal}
@@ -173,7 +189,7 @@
 				{/if}
 			{:else}
 				<h2>Payment Successful</h2>
-				<p>You will be sent an email. Thank you!</p>
+				<p>Thank you for your payment!</p>
 				<div class="btns">
 					<a href={receipt_url} class="modal-btn">View Receipt.</a>
 					<a href="/" class="modal-btn">Go Home</a>
@@ -186,7 +202,7 @@
 <SubNav {pageTitle} />
 <main id="checkout">
 	<div class="container">
-		<h2 class="section-title">Square Checkout Demo</h2>
+		<h2 class="section-title">Custom Checkout</h2>
 		<div class="card-container-wrap">
 			<form
 				on:submit|preventDefault={() => {
@@ -239,11 +255,34 @@
 						required
 					/><!-- Phone Number -->
 				</div>
+				<div class="form-control">
+					<label for="amount-input">Payment Amount</label>
+					<input
+						id="amount-input"
+						name="Payment Amount"
+						type="text"
+						placeholder="$1.00"
+						bind:value={displayInputAmount}
+						on:blur={convertAmountForDisplay}
+						required
+					/><!-- Payment Amount -->
+				</div>
+				<div class="form-control">
+					<label for="amount-input">Reference Id</label>
+					<input
+						id="ref-input"
+						name="Reference Id"
+						type="text"
+						placeholder="#"
+						bind:value={referenceId}
+						required
+					/><!-- Reference Id -->
+				</div>
 				<div class="form-control no-margin">
 					<label for="card-container">Card Details</label>
 					<div id="card-container" />
 				</div>
-				<button id="card-btn">Pay $1.00</button><!-- /button -->
+				<button id="card-btn">Pay {displayTotalAmount}</button><!-- /button -->
 			</form>
 		</div>
 	</div>

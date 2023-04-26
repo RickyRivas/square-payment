@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"currency.js": "^2.0.4",
 		"dotenv": "^16.0.3",
 		"square": "^26.0.0",
 		"swiper": "^8.4.5",
