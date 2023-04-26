@@ -3,6 +3,7 @@
 	import SubNav from '$lib/components/SubNav.svelte';
 	let pageTitle = 'Checkout';
 	import currency from '../currency';
+	import StateSelect from '$lib/components/StateSelect.svelte';
 
 	// styles
 	import '$styles/checkout/main.css';
@@ -17,12 +18,12 @@
 	let family_name: string | undefined;
 	let company_name: string | undefined;
 	let email_address: string | undefined;
-	let phone_number: string | undefined;
 	let address = {
-		addressLine1: '',
-		administrativeDistrictLevel1: '',
-		administrativeDistrictLevel2: '',
-		postalCode: '',
+		addressLine1: '5924 E King PL',
+		addressLine2: 'Titties Street',
+		administrativeDistrictLevel1: 'AL',
+		administrativeDistrictLevel2: 'Tulsa',
+		postalCode: '74115',
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
@@ -96,6 +97,8 @@
 			console.error('Initializing Card failed:');
 			return;
 		}
+
+		// OTHER
 	});
 
 	/*                   Create Payment                    */
@@ -114,8 +117,7 @@
 				email_address,
 				given_name,
 				family_name,
-				address,
-				phone_number
+				address
 			})
 		});
 
@@ -168,6 +170,9 @@
 	$: amount = currency(displayInputAmount)?.intValue;
 	// $: console.log(`DTA: ${displayTotalAmount}, DIA: ${displayInputAmount}, Amount: ${amount}`);
 	// $: console.log(amount);
+
+	// States
+	// $: console.log('Current State selected:', address.administrativeDistrictLevel1);
 </script>
 
 {#if showModal}
@@ -212,50 +217,6 @@
 				method="POST"
 			>
 				<div class="form-control">
-					<label for="fname-input">First Name</label>
-					<input
-						id="fname-input"
-						name="First Name"
-						type="text"
-						placeholder="First Name"
-						bind:value={given_name}
-						required
-					/><!-- First Name -->
-				</div>
-				<div class="form-control">
-					<label for="lname-input">Last Name</label>
-					<input
-						id="lname-input"
-						name="Last Name"
-						type="text"
-						placeholder="Last Name"
-						bind:value={family_name}
-						required
-					/><!-- Last Name -->
-				</div>
-				<div class="form-control">
-					<label for="email-input">Email Address</label>
-					<input
-						id="email-input"
-						name="Email Address"
-						type="email"
-						placeholder="Email Address"
-						bind:value={email_address}
-						required
-					/><!-- Email Address -->
-				</div>
-				<div class="form-control">
-					<label for="phone-input">Phone Number</label>
-					<input
-						id="phone-input"
-						name="Phone Number"
-						type="tel"
-						placeholder="Phone Number"
-						bind:value={phone_number}
-						required
-					/><!-- Phone Number -->
-				</div>
-				<div class="form-control">
 					<label for="amount-input">Payment Amount</label>
 					<input
 						id="amount-input"
@@ -278,11 +239,82 @@
 						required
 					/><!-- Reference Id -->
 				</div>
+				<div class="form-control">
+					<label for="fname-input">First Name</label>
+					<input
+						id="fname-input"
+						name="First Name"
+						type="text"
+						placeholder="First Name"
+						bind:value={given_name}
+						required
+					/><!-- First Name -->
+				</div>
+				<div class="form-control">
+					<label for="lname-input">Last Name</label>
+					<input
+						id="lname-input"
+						name="Last Name"
+						type="text"
+						placeholder="Last Name"
+						bind:value={family_name}
+						required
+					/><!-- Last Name -->
+				</div>
+				<!-- BILLING DETAILS -->
+				<div class="form-control">
+					<label for="address1-input">Address Line 1</label>
+					<input
+						id="address1-input"
+						name="Address Line 1"
+						type="text"
+						placeholder="Address Line 1"
+						bind:value={address.addressLine1}
+						required
+					/><!-- Address Line 1 -->
+				</div>
+				<div class="form-control">
+					<label for="address2-input">Address Line 2</label>
+					<input
+						id="address2-input"
+						name="Address Line 2"
+						type="text"
+						placeholder="Address Line 2"
+						bind:value={address.addressLine2}
+					/><!-- Address Line 2 (OPTIONAL) -->
+				</div>
+				<div class="form-control">
+					<label for="city-input">City</label>
+					<input
+						id="city-input"
+						name="City"
+						type="text"
+						placeholder="City"
+						bind:value={address.administrativeDistrictLevel2}
+					/><!-- City -->
+				</div>
+				<StateSelect
+					on:selectstate={(e) => {
+						address.administrativeDistrictLevel1 = e.detail.state;
+					}}
+				/><!-- State Component-->
+				<div class="form-control">
+					<label for="email-input">Receipt Email</label>
+					<input
+						id="email-input"
+						name="Email Address"
+						type="email"
+						placeholder="Email Address"
+						bind:value={email_address}
+						required
+					/><!-- Email Address -->
+				</div>
 				<div class="form-control no-margin">
 					<label for="card-container">Card Details</label>
 					<div id="card-container" />
 				</div>
-				<button id="card-btn">Pay {displayTotalAmount}</button><!-- /button -->
+				<button type="submit" name="submit-btn" id="card-btn">Pay {displayTotalAmount}</button
+				><!-- /button -->
 			</form>
 		</div>
 	</div>

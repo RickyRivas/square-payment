@@ -21,8 +21,7 @@ export const POST: RequestHandler = async ({ request }) => {
         email_address,
         given_name,
         family_name,
-        address,
-        phone_number } = await request.json();
+        address } = await request.json();
 
     // create key for unique request to Square
     const idempotencyKey = uuidv4();

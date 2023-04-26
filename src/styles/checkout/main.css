@@ -35,7 +35,7 @@ main#checkout .container h2.section-title {
 }
 main#checkout .container .card-container-wrap {
   width: 100%;
-  max-width: 26.5em;
+  max-width: 28.5em;
   background-color: #edf2f4;
   padding: 2em;
   box-shadow: var(--box-shadow);
@@ -114,6 +114,73 @@ main#checkout .container .card-container-wrap #payment-form .form-control input[
 main#checkout .container .card-container-wrap #payment-form .form-control select:active {
   border: 1px solid #202020;
 }
+main#checkout .container .card-container-wrap #payment-form .form-control .combo {
+  display: block;
+  width: 100%;
+  position: relative;
+  font-size: 0.8em;
+  border: 1px solid transparent;
+}
+@media only screen and (max-width: 600px) {
+  main#checkout .container .card-container-wrap #payment-form .form-control .combo {
+    font-size: 16px;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-input {
+  background-color: #fff;
+  border-radius: 0;
+  display: block;
+  padding: 0.7em;
+  text-align: left;
+  width: 100%;
+  background-image: url(/down.svg);
+  background-position: right 0.75em center;
+  background-repeat: no-repeat;
+  background-size: 0.875em;
+  transition: border-color 0.33s ease;
+  outline: none;
+  border: 1px solid transparent;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-input:focus,
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-input:active {
+  border: 1px solid #202020;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .open .combo-input {
+  border-radius: 0 0 0;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-input:focus {
+  border-color: #202020;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-menu {
+  background-color: #f5f5f5;
+  border: 1px solid #202020;
+  border-radius: 0;
+  border-top: 0;
+  display: none;
+  max-height: 15em;
+  overflow-y: scroll;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 100;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .open .combo-menu {
+  display: block;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-option {
+  padding: 0.7em;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-option:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-option.option-current {
+  background-color: #fff;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .combo-option[aria-selected="true"] {
+  padding-right: 30px;
+  position: relative;
+}
 main#checkout .container .card-container-wrap #payment-form #card-btn {
   width: 100%;
   display: flex;
@@ -134,6 +201,7 @@ main#checkout .container .card-container-wrap #payment-form #card-btn {
   }
 }
 main#checkout .container .card-container-wrap #payment-form #card-btn:hover,
-main#checkout .container .card-container-wrap #payment-form #card-btn:focus-visible {
+main#checkout .container .card-container-wrap #payment-form #card-btn:focus,
+main#checkout .container .card-container-wrap #payment-form #card-btn:active {
   background-color: var(--primary-color);
 }
