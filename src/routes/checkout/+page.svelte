@@ -79,7 +79,6 @@
 
 	onMount(async () => {
 		if (!window.Square) {
-			// TODO: instead of throwing error in console, init modal with error
 			showModal = true;
 			msg = 'Something went wrong with loading the app. Please try again later.';
 			throw new Error('Square.js failed to load properly');
@@ -229,7 +228,6 @@
 			const updateGooglePay = gPay.req.update({
 				total: { amount: displayInputAmount.replace('$', ''), label: 'Total' }
 			});
-			console.log('Updated GPAY payment amount.');
 		}
 		if (aPay) {
 			const updateApplePay = aPay.req.update({
@@ -254,8 +252,17 @@
 	let displayTotalAmount: any;
 	let displayInputAmount: any = currency(amount)?.format();
 
+	// UPDATE BOTH VALUES TO CHANGE MIN $. TODO: UPDATE ONE VALUE TO UPDATE BOTH
+	let minAmount = '$1.00';
+	let minAmountConverted = 100;
+
 	function convertAmountForDisplay() {
 		displayInputAmount = currency(displayInputAmount)?.format();
+		// Making sure value is always above min value
+		if (currency(displayInputAmount)?.intValue < minAmountConverted) {
+			displayInputAmount = minAmount;
+			amount = minAmountConverted;
+		}
 	}
 
 	$: displayTotalAmount = currency(displayInputAmount)?.format();
