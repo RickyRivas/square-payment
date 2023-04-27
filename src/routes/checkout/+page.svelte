@@ -39,6 +39,10 @@
 			console.log('Tokenizing.');
 			token = await tokenize(paymentMethod);
 		} catch (error) {
+			// MAKING SURE WE KEEP MODAL CLOSED IF USER CANCELS DIGITAL PAYMENT EARLY
+			if (paymentMethod.methodType !== 'Card') {
+				return;
+			}
 			/* End flow before call to backend. */
 			console.log(error);
 			msg = error.message;
