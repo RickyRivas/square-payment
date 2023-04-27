@@ -28,9 +28,24 @@ main#checkout {
         margin: 0 auto 1em;
 
         h2.section-title {
-            font-size: (25/20em);
+            font-size: (30/20em);
             line-height: 1.2;
             margin-bottom: (20/25em);
+            font-weight: bold;
+
+            @media only screen and (max-width: 768px) {
+                font-size: (30/20em);
+            }
+        }
+
+        h3.form-section-title {
+            font-size: (20/20em);
+            line-height: 1.2;
+            margin-bottom: (15/20em);
+
+            @media only screen and (max-width: 768px) {
+                font-size: (25/20em);
+            }
         }
 
         .card-container-wrap {
@@ -45,6 +60,15 @@ main#checkout {
                 padding: 2em;
                 box-shadow: var(--box-shadow);
                 border-radius: 1em;
+
+                @media only screen and (max-width: 767px) {
+                    padding: 1em;
+                }
+
+                .form-flex {
+                    display: flex;
+                    gap: 1em;
+                }
 
                 .form-control {
                     display: flex;
@@ -62,7 +86,7 @@ main#checkout {
                         font-size: (16/20em);
                         margin-bottom: .2em;
 
-                        @media only screen and (max-width: 768px) {
+                        @media only screen and (max-width: 767px) {
                             font-size: 17px;
                         }
                     }
@@ -99,6 +123,11 @@ main#checkout {
                         &:active {
                             outline: none;
                             border: 2px solid #4D90FE;
+                        }
+
+                        &:disabled {
+                            background-color: #e9ecef;
+                            pointer-events: none;
                         }
                     }
 

@@ -29,9 +29,25 @@ main#checkout .container {
   margin: 0 auto 1em;
 }
 main#checkout .container h2.section-title {
-  font-size: 1.25em;
+  font-size: 1.5em;
   line-height: 1.2;
   margin-bottom: 0.8em;
+  font-weight: bold;
+}
+@media only screen and (max-width: 768px) {
+  main#checkout .container h2.section-title {
+    font-size: 1.5em;
+  }
+}
+main#checkout .container h3.form-section-title {
+  font-size: 1em;
+  line-height: 1.2;
+  margin-bottom: 0.75em;
+}
+@media only screen and (max-width: 768px) {
+  main#checkout .container h3.form-section-title {
+    font-size: 1.25em;
+  }
 }
 main#checkout .container .card-container-wrap {
   width: 100%;
@@ -46,6 +62,15 @@ main#checkout .container .card-container-wrap #payment-form {
   padding: 2em;
   box-shadow: var(--box-shadow);
   border-radius: 1em;
+}
+@media only screen and (max-width: 767px) {
+  main#checkout .container .card-container-wrap #payment-form {
+    padding: 1em;
+  }
+}
+main#checkout .container .card-container-wrap #payment-form .form-flex {
+  display: flex;
+  gap: 1em;
 }
 main#checkout .container .card-container-wrap #payment-form .form-control {
   display: flex;
@@ -62,7 +87,7 @@ main#checkout .container .card-container-wrap #payment-form .form-control label 
   font-size: 0.8em;
   margin-bottom: 0.2em;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main#checkout .container .card-container-wrap #payment-form .form-control label {
     font-size: 17px;
   }
@@ -114,6 +139,14 @@ main#checkout .container .card-container-wrap #payment-form .form-control input[
 main#checkout .container .card-container-wrap #payment-form .form-control select:active {
   outline: none;
   border: 2px solid #4D90FE;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text']:disabled,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number']:disabled,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email']:disabled,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel']:disabled,
+main#checkout .container .card-container-wrap #payment-form .form-control select:disabled {
+  background-color: #e9ecef;
+  pointer-events: none;
 }
 main#checkout .container .card-container-wrap #payment-form .form-control .combo {
   display: block;

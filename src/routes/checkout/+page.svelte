@@ -216,6 +216,7 @@
 				id="payment-form"
 				method="POST"
 			>
+				<h3 class="form-section-title">Payment Details</h3>
 				<div class="form-control">
 					<label for="amount-input">Payment Amount</label>
 					<input
@@ -239,29 +240,33 @@
 						required
 					/><!-- Reference Id -->
 				</div>
-				<div class="form-control">
-					<label for="fname-input">First Name</label>
-					<input
-						id="fname-input"
-						name="First Name"
-						type="text"
-						placeholder="First Name"
-						bind:value={given_name}
-						required
-					/><!-- First Name -->
-				</div>
-				<div class="form-control">
-					<label for="lname-input">Last Name</label>
-					<input
-						id="lname-input"
-						name="Last Name"
-						type="text"
-						placeholder="Last Name"
-						bind:value={family_name}
-						required
-					/><!-- Last Name -->
-				</div>
+
+				<h3 class="form-section-title">Billing Details</h3>
 				<!-- BILLING DETAILS -->
+				<div class="form-flex">
+					<div class="form-control">
+						<label for="fname-input">First Name</label>
+						<input
+							id="fname-input"
+							name="First Name"
+							type="text"
+							placeholder="First Name"
+							bind:value={given_name}
+							required
+						/><!-- First Name -->
+					</div>
+					<div class="form-control">
+						<label for="lname-input">Last Name</label>
+						<input
+							id="lname-input"
+							name="Last Name"
+							type="text"
+							placeholder="Last Name"
+							bind:value={family_name}
+							required
+						/><!-- Last Name -->
+					</div>
+				</div>
 				<div class="form-control">
 					<label for="address1-input">Address Line 1</label>
 					<input
@@ -274,7 +279,7 @@
 					/><!-- Address Line 1 -->
 				</div>
 				<div class="form-control">
-					<label for="address2-input">Address Line 2</label>
+					<label for="address2-input">Address Line 2 (Optional)</label>
 					<input
 						id="address2-input"
 						name="Address Line 2"
@@ -283,21 +288,46 @@
 						bind:value={address.addressLine2}
 					/><!-- Address Line 2 (OPTIONAL) -->
 				</div>
-				<div class="form-control">
-					<label for="city-input">City</label>
-					<input
-						id="city-input"
-						name="City"
-						type="text"
-						placeholder="City"
-						bind:value={address.administrativeDistrictLevel2}
-					/><!-- City -->
+				<div class="form-flex">
+					<div class="form-control">
+						<label for="city-input">City</label>
+						<input
+							id="city-input"
+							name="City"
+							type="text"
+							placeholder="City"
+							bind:value={address.administrativeDistrictLevel2}
+						/><!-- City -->
+					</div>
+					<StateSelect
+						on:selectstate={(e) => {
+							address.administrativeDistrictLevel1 = e.detail.state;
+						}}
+					/><!-- State Component-->
 				</div>
-				<StateSelect
-					on:selectstate={(e) => {
-						address.administrativeDistrictLevel1 = e.detail.state;
-					}}
-				/><!-- State Component-->
+				<div class="form-flex">
+					<div class="form-control">
+						<label for="postal-input">Zip / Postal Code</label>
+						<input
+							id="postal-input"
+							name="Postal Code"
+							type="text"
+							placeholder="Zip / Postal Code"
+							bind:value={address.postalCode}
+						/><!-- Zip/Postal Code  -->
+					</div>
+					<div class="form-control">
+						<label for="country-input">Country</label>
+						<input
+							id="country-input"
+							name="Country"
+							type="text"
+							placeholder="Country"
+							bind:value={address.country}
+							disabled
+						/><!-- Country -->
+					</div>
+				</div>
 				<div class="form-control">
 					<label for="email-input">Receipt Email</label>
 					<input
