@@ -108,6 +108,9 @@
 			aPay = await initApplePay(payments);
 			attachApplePay();
 		} catch (e) {
+			if (!aPay) {
+				document.querySelector('#apple-pay-button').style.display = 'none';
+			}
 			throw new Error(e.message);
 		}
 	});
@@ -419,12 +422,12 @@
 
 <style lang="less">
 	#apple-pay-button {
-		height: (41/20em);
+		height: 41px;
 		width: 100%;
 		display: inline-block;
 		-webkit-appearance: -apple-pay-button;
 		-apple-pay-button-type: plain;
 		-apple-pay-button-style: black;
-		margin-bottom: 0.5em;
+		margin-bottom: 1em;
 	}
 </style>
