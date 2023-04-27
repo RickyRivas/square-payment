@@ -410,20 +410,21 @@
 				<button type="submit" name="submit-btn" id="card-btn">Pay {displayTotalAmount}</button
 				><!-- /button -->
 				<p class="or"><span>or</span></p>
-				<div id="google-pay-button" />
 				<div id="apple-pay-button" />
+				<div id="google-pay-button" />
 			</form>
 		</div>
 	</div>
 </main>
 
-<style>
+<style lang="less">
 	#apple-pay-button {
-		height: 48px;
+		height: (41/20em);
 		width: 100%;
 		display: inline-block;
 		-webkit-appearance: -apple-pay-button;
 		-apple-pay-button-type: plain;
 		-apple-pay-button-style: black;
+		margin-bottom: 0.5em;
 	}
 </style>
