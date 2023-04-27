@@ -68,6 +68,32 @@ main#checkout .container .card-container-wrap #payment-form {
     padding: 1em;
   }
 }
+main#checkout .container .card-container-wrap #payment-form .or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 1em 0;
+  text-transform: uppercase;
+  font-size: 0.75em;
+}
+main#checkout .container .card-container-wrap #payment-form .or::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main#checkout .container .card-container-wrap #payment-form .or span {
+  margin: auto;
+  background-color: #fff;
+  padding: 0 1em;
+  z-index: 10;
+  position: relative;
+}
 main#checkout .container .card-container-wrap #payment-form .form-flex {
   display: flex;
   gap: 1em;

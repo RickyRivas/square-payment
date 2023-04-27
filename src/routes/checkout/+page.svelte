@@ -16,13 +16,12 @@
 	// User Data
 	let given_name: string | undefined;
 	let family_name: string | undefined;
-	let company_name: string | undefined;
 	let email_address: string | undefined;
 	let address = {
 		addressLine1: '',
 		addressLine2: '',
 		administrativeDistrictLevel1: 'AL',
-		locality: 'Tulsa',
+		locality: '',
 		postalCode: '',
 		country: 'US'
 	};
@@ -40,7 +39,8 @@
 			token = await tokenize(paymentMethod);
 		} catch (error) {
 			/* End flow before call to backend. */
-			msg = 'Please check your payment information and try again.';
+			console.log(error);
+			msg = error.message;
 			showModal = true;
 			loading = false;
 			return;
@@ -67,6 +67,8 @@
 	}
 
 	let card: any;
+	let gPay: any;
+	let aPay: any;
 
 	onMount(async () => {
 		if (!window.Square) {
@@ -98,7 +100,16 @@
 			return;
 		}
 
-		// OTHER
+		// INIT GOOGLE PAY
+		try {
+			gPay = await initGooglePay(payments);
+			attachGooglePay();
+
+			aPay = await initApplePay(payments);
+			attachApplePay();
+		} catch (e) {
+			throw new Error(e.message);
+		}
 	});
 
 	/*                   Create Payment                    */
@@ -133,19 +144,74 @@
 
 	/*                         Tokenize                           */
 	async function tokenize(paymentMethod) {
-		if (paymentMethod.methodType === 'Card') {
-			const tokenResult = await paymentMethod.tokenize();
-			// two different routes
-			if (tokenResult.status === 'OK') {
-				console.log('Succesfully created a token.');
+		const tokenResult = await paymentMethod.tokenize();
+		switch (tokenResult.status) {
+			case 'Abort':
+				throw new Error('the process was aborted. Please try again later.');
+			case 'Cancel':
+				throw new Error('The process was canceled by the user.');
+			case 'Error':
+				throw new Error('There was an error processing your request.');
+			case 'Invalid':
+				throw new Error('Please make sure your card information is correct.');
+			case 'OK':
+				console.log('Token was successfully created.');
 				return tokenResult.token;
-			} else {
-				/* Square will handle UI for this kind of error */
-				throw new Error('Tokenization failed!');
-			}
+			case 'Unknown':
+				throw new Error('Something went wrong. Please try again later.');
+			default:
+				throw new Error('Something went wrong. Please try again later.');
 		}
 	}
-	// TODO: apple/google pay
+
+	// GOOGLE/APPLE PAY
+	/*         BUILD PAYMENT REQUEST FOR BOTH GOOGLE/APPLE PAY         */
+	function buildPaymentRequest(payments) {
+		return payments.paymentRequest({
+			countryCode: address.country,
+			currencyCode: 'USD',
+			total: {
+				amount: displayInputAmount.replace('$', ''),
+				label: 'Total'
+			},
+			requestBillingContact: true,
+			requestShippingContact: false
+		});
+	}
+
+	async function initGooglePay(payments) {
+		const paymentRequest = buildPaymentRequest(payments);
+		const googlePay = await payments.googlePay(paymentRequest);
+		await googlePay.attach('#google-pay-button', {
+			buttonType: 'long',
+			buttonSizeMode: 'fill'
+		});
+		return googlePay;
+	}
+
+	function attachGooglePay() {
+		if (gPay !== undefined) {
+			const googlePayButton = document.querySelector('#google-pay-button');
+			googlePayButton?.addEventListener('click', async () => {
+				await handlePaymentMethodSubmission(gPay);
+			});
+		}
+	}
+
+	async function initApplePay(payments) {
+		const paymentRequest = buildPaymentRequest(payments);
+		const applePay = await payments.applePay(paymentRequest);
+		return applePay;
+	}
+
+	function attachApplePay() {
+		if (aPay !== undefined) {
+			const applePayButton = document.querySelector('#apple-pay-button');
+			applePayButton?.addEventListener('click', async () => {
+				await handlePaymentMethodSubmission(aPay);
+			});
+		}
+	}
 
 	// MODAL
 	let msg = '';
@@ -169,11 +235,8 @@
 
 	$: displayTotalAmount = currency(displayInputAmount)?.format();
 	$: amount = currency(displayInputAmount)?.intValue;
-	// $: console.log(`DTA: ${displayTotalAmount}, DIA: ${displayInputAmount}, Amount: ${amount}`);
-	// $: console.log(amount);
 
-	// States
-	// $: console.log('Current State selected:', address.administrativeDistrictLevel1);
+	// $: console.log('AMOUNT FOR PAYMENT REQ:', displayInputAmount.replace('$', ''));
 </script>
 
 {#if showModal}
@@ -346,7 +409,21 @@
 				</div>
 				<button type="submit" name="submit-btn" id="card-btn">Pay {displayTotalAmount}</button
 				><!-- /button -->
+				<p class="or"><span>or</span></p>
+				<div id="google-pay-button" />
+				<div id="apple-pay-button" />
 			</form>
 		</div>
 	</div>
 </main>
+
+<style>
+	#apple-pay-button {
+		height: 48px;
+		width: 100%;
+		display: inline-block;
+		-webkit-appearance: -apple-pay-button;
+		-apple-pay-button-type: plain;
+		-apple-pay-button-style: black;
+	}
+</style>
