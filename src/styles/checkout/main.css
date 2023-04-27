@@ -1,5 +1,6 @@
 main#checkout {
-  width: 100%;
+  width: 100vw;
+  display: block;
   position: relative;
   padding: 3em 1em;
 }
@@ -243,7 +244,7 @@ main#checkout .container .card-container-wrap #payment-form #card-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  height: 41px;
   border: 0;
   font: inherit;
   color: white;

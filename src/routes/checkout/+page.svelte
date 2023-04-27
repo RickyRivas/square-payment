@@ -4,34 +4,35 @@
 	let pageTitle = 'Checkout';
 	import currency from '../currency';
 	import StateSelect from '$lib/components/StateSelect.svelte';
+	import { fade } from 'svelte/transition';
 
 	// styles
 	import '$styles/checkout/main.css';
 	import { onMount } from 'svelte';
-
 	// CREDENTIALS
 	export let data;
 	const { SQUARE_APPLICATION_ID, LOCATION_ID } = data;
 
 	// User Data
-	let given_name: string | undefined;
-	let family_name: string | undefined;
-	let email_address: string | undefined;
+	let given_name: string | undefined = 'John';
+	let family_name: string | undefined = 'Doe';
+	let email_address: string | undefined = 'John@gmail.com';
 	let address = {
-		addressLine1: '',
+		addressLine1: '1204 N JAP Ave',
 		addressLine2: '',
 		administrativeDistrictLevel1: 'AL',
-		locality: '',
-		postalCode: '',
+		locality: 'Tulsa',
+		postalCode: '74145',
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
-	let referenceId: string | undefined;
+	let referenceId: string | undefined = '69';
 
 	async function handlePaymentMethodSubmission(paymentMethod) {
-		showModal = true;
-		loading = true;
-
+		if (paymentMethod.methodType === 'Card') {
+			showModal = true;
+			loading = true;
+		}
 		/*                          STEP 1. TOKENIZE                                             */
 		let token: any;
 		try {
@@ -60,6 +61,7 @@
 
 		/*                         Handle Successful payment                              */
 		loading = false;
+		showModal = true;
 		successModal = true;
 		const successfulPaymentDetails = JSON.parse(paymentResults);
 		console.debug('Payment Success', successfulPaymentDetails);
@@ -100,7 +102,7 @@
 			return;
 		}
 
-		// INIT GOOGLE PAY
+		// INIT Digital Payments
 		try {
 			gPay = await initGooglePay(payments);
 			attachGooglePay();
@@ -243,7 +245,7 @@
 </script>
 
 {#if showModal}
-	<div class="modal">
+	<div class="modal" transition:fade>
 		<div class="container">
 			{#if !successModal}
 				{#if loading}
