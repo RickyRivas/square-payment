@@ -9,26 +9,76 @@
 	// styles
 	import '$styles/checkout/main.css';
 	import { onMount } from 'svelte';
+
 	// CREDENTIALS
 	export let data;
 	const { SQUARE_APPLICATION_ID, LOCATION_ID } = data;
 
 	// User Data
-	let given_name: string | undefined = 'John';
-	let family_name: string | undefined = 'Doe';
-	let email_address: string | undefined = 'John@gmail.com';
+	let given_name: string | undefined;
+	let family_name: string | undefined;
+	let email_address: string | undefined;
 	let address = {
-		addressLine1: '1204 N JAP Ave',
+		addressLine1: '',
 		addressLine2: '',
 		administrativeDistrictLevel1: 'AL',
-		locality: 'Tulsa',
-		postalCode: '74145',
+		locality: '',
+		postalCode: '',
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
-	let referenceId: string | undefined = '69';
+	let referenceId: string | undefined;
+
+	async function ValidateForm(formData) {
+		const response = await fetch('/api/zod', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData)
+		});
+
+		const data = await response.json();
+		const { errors } = data;
+
+		/* get form fields and show error in ui */
+		for (const name in errors) {
+			const selectedItem = document.querySelector(`input#${name}`);
+			selectedItem.classList.add('validate-error');
+			selectedItem.nextElementSibling.textContent = errors[name][0];
+		}
+
+		/* Error msg for modal*/
+		if (errors) {
+			throw new Error('Please make sure you filled out the correct fields.');
+		}
+	}
 
 	async function handlePaymentMethodSubmission(paymentMethod) {
+		// reset all form handling if any
+		const validatedErrors = document.querySelectorAll('.validate-error');
+		const validatedSpans = document.querySelectorAll('.validate-message');
+		if (validatedErrors) {
+			validatedErrors.forEach((e) => e.classList.remove('validate-error'));
+		}
+		if (validatedSpans) {
+			validatedSpans.forEach((s) => (s.textContent = ''));
+		}
+
+		/*                                 VALIDATE FORM FIELDS                           */
+		const form = document.querySelector('#payment-form');
+		const formData = Object.fromEntries(new FormData(form));
+
+		try {
+			await ValidateForm(formData);
+			console.log('Form was successfully validated.');
+		} catch (e) {
+			showModal = true;
+			msg = e.message;
+			return;
+		}
+
+		// Define the payment method for checking
 		if (paymentMethod.methodType === 'Card') {
 			showModal = true;
 			loading = true;
@@ -313,10 +363,10 @@
 				method="POST"
 			>
 				<div class="form-control">
-					<label for="amount-input">Payment Amount</label>
+					<label for="amount">Payment Amount</label>
 					<input
-						id="amount-input"
-						name="Payment Amount"
+						id="amount"
+						name="amount"
 						type="text"
 						placeholder="$1.00"
 						bind:value={displayInputAmount}
@@ -326,74 +376,77 @@
 						}}
 						required
 					/><!-- Payment Amount -->
+					<span class="validate-message" />
 				</div>
 				<div class="form-control">
-					<label for="amount-input">Reference Id</label>
+					<label for="referenceid">Reference Id</label>
 					<input
-						id="ref-input"
-						name="Reference Id"
+						id="referenceid"
+						name="referenceid"
 						type="text"
 						placeholder="#"
 						bind:value={referenceId}
-						required
 					/><!-- Reference Id -->
+					<span class="validate-message" />
 				</div>
 				<!-- BILLING DETAILS -->
 				<div class="form-flex">
 					<div class="form-control">
-						<label for="fname-input">First Name</label>
+						<label for="fname">First Name</label>
 						<input
-							id="fname-input"
-							name="First Name"
+							id="fname"
+							name="fname"
 							type="text"
 							placeholder="First Name"
 							bind:value={given_name}
-							required
 						/><!-- First Name -->
+						<span class="validate-message" />
 					</div>
 					<div class="form-control">
-						<label for="lname-input">Last Name</label>
+						<label for="lname">Last Name</label>
 						<input
-							id="lname-input"
-							name="Last Name"
+							id="lname"
+							name="lname"
 							type="text"
 							placeholder="Last Name"
 							bind:value={family_name}
-							required
 						/><!-- Last Name -->
+						<span class="validate-message" />
 					</div>
 				</div>
 				<div class="form-control">
-					<label for="address1-input">Address Line 1</label>
+					<label for="address1">Address Line 1</label>
 					<input
-						id="address1-input"
-						name="Address Line 1"
+						id="address1"
+						name="address1"
 						type="text"
 						placeholder="Address Line 1"
 						bind:value={address.addressLine1}
-						required
 					/><!-- Address Line 1 -->
+					<span class="validate-message" />
 				</div>
 				<div class="form-control">
-					<label for="address2-input">Address Line 2 (Optional)</label>
+					<label for="address2">Address Line 2 (Optional)</label>
 					<input
-						id="address2-input"
-						name="Address Line 2"
+						id="address2"
+						name="address2"
 						type="text"
 						placeholder="Address Line 2"
 						bind:value={address.addressLine2}
 					/><!-- Address Line 2 (OPTIONAL) -->
+					<span class="validate-message" />
 				</div>
 				<div class="form-flex">
 					<div class="form-control">
-						<label for="city-input">City</label>
+						<label for="city">City</label>
 						<input
-							id="city-input"
-							name="City"
+							id="city"
+							name="city"
 							type="text"
 							placeholder="City"
 							bind:value={address.locality}
 						/><!-- City -->
+						<span class="validate-message" />
 					</div>
 					<StateSelect
 						on:selectstate={(e) => {
@@ -403,37 +456,40 @@
 				</div>
 				<div class="form-flex">
 					<div class="form-control">
-						<label for="postal-input">Zip / Postal Code</label>
+						<label for="postal">Zip / Postal Code</label>
 						<input
-							id="postal-input"
-							name="Postal Code"
+							id="postal"
+							name="postal"
 							type="text"
 							placeholder="Zip / Postal Code"
 							bind:value={address.postalCode}
 						/><!-- Zip/Postal Code  -->
+						<span class="validate-message" />
 					</div>
 					<div class="form-control">
-						<label for="country-input">Country</label>
+						<label for="country">Country</label>
 						<input
-							id="country-input"
-							name="Country"
+							id="country"
+							name="country"
 							type="text"
 							placeholder="Country"
 							bind:value={address.country}
 							disabled
+							required
 						/><!-- Country -->
+						<span class="validate-message" />
 					</div>
 				</div>
 				<div class="form-control">
-					<label for="email-input">Receipt Email</label>
+					<label for="email">Receipt Email</label>
 					<input
-						id="email-input"
-						name="Email Address"
+						id="email"
+						name="email"
 						type="email"
 						placeholder="Email Address"
 						bind:value={email_address}
-						required
 					/><!-- Email Address -->
+					<span class="validate-message" />
 				</div>
 				<div class="form-control no-margin">
 					<label for="card-container">Card Details</label>

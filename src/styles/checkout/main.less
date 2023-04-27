@@ -105,7 +105,7 @@ main#checkout {
                     flex-direction: column;
                     width: 100%;
                     position: relative;
-                    margin-bottom: 1em;
+                    margin-bottom: .5em;
 
                     &.no-margin {
                         margin-bottom: 0;
@@ -159,6 +159,10 @@ main#checkout {
                             background-color: #e9ecef;
                             pointer-events: none;
                         }
+
+                        &.validate-error {
+                            border: 2px solid red;
+                        }
                     }
 
                     .combo {
@@ -199,8 +203,6 @@ main#checkout {
                         border-radius: .25em .25em 0 0;
                     }
 
-
-
                     .combo-menu {
                         background-color: #f5f5f5;
                         border: 1px solid #202020;
@@ -235,6 +237,13 @@ main#checkout {
                     .combo-option[aria-selected="true"] {
                         padding-right: 30px;
                         position: relative;
+                    }
+
+                    .validate-message {
+                        color: red;
+                        font-size: (13/20em);
+                        min-height: (15/13em);
+                        margin-top: .5em;
                     }
                 }
 

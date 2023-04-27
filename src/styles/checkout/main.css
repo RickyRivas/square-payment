@@ -104,7 +104,7 @@ main#checkout .container .card-container-wrap #payment-form .form-control {
   flex-direction: column;
   width: 100%;
   position: relative;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 main#checkout .container .card-container-wrap #payment-form .form-control.no-margin {
   margin-bottom: 0;
@@ -175,6 +175,13 @@ main#checkout .container .card-container-wrap #payment-form .form-control select
   background-color: #e9ecef;
   pointer-events: none;
 }
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='text'].validate-error,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='number'].validate-error,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='email'].validate-error,
+main#checkout .container .card-container-wrap #payment-form .form-control input[type='tel'].validate-error,
+main#checkout .container .card-container-wrap #payment-form .form-control select.validate-error {
+  border: 2px solid red;
+}
 main#checkout .container .card-container-wrap #payment-form .form-control .combo {
   display: block;
   width: 100%;
@@ -238,6 +245,12 @@ main#checkout .container .card-container-wrap #payment-form .form-control .combo
 main#checkout .container .card-container-wrap #payment-form .form-control .combo-option[aria-selected="true"] {
   padding-right: 30px;
   position: relative;
+}
+main#checkout .container .card-container-wrap #payment-form .form-control .validate-message {
+  color: red;
+  font-size: 0.65em;
+  min-height: 1.15384615em;
+  margin-top: 0.5em;
 }
 main#checkout .container .card-container-wrap #payment-form #card-btn {
   width: 100%;
