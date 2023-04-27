@@ -39,10 +39,10 @@
 			console.log('Tokenizing.');
 			token = await tokenize(paymentMethod);
 		} catch (error) {
-			// MAKING SURE WE KEEP MODAL CLOSED IF USER CANCELS DIGITAL PAYMENT EARLY
 			/* End flow before call to backend. */
 			console.log(error);
 			if (paymentMethod.methodType !== 'Card') {
+				// Generic error message if digital payment somehow was canceled
 				msg = 'Process has been canceled.';
 			} else {
 				msg = error.message;
@@ -223,6 +223,21 @@
 		}
 	}
 
+	// UPDATE APPLE/GOOGLE PAY Payment Request amount when user changes amount
+	async function updatePaymentRequest() {
+		if (gPay) {
+			const updateGooglePay = gPay.req.update({
+				total: { amount: displayInputAmount.replace('$', ''), label: 'Total' }
+			});
+			console.log('Updated GPAY payment amount.');
+		}
+		if (aPay) {
+			const updateApplePay = aPay.req.update({
+				total: { amount: displayInputAmount.replace('$', ''), label: 'Total' }
+			});
+		}
+	}
+
 	// MODAL
 	let msg = '';
 	let loading = false;
@@ -290,7 +305,6 @@
 				id="payment-form"
 				method="POST"
 			>
-				<h3 class="form-section-title">Payment Details</h3>
 				<div class="form-control">
 					<label for="amount-input">Payment Amount</label>
 					<input
@@ -299,7 +313,10 @@
 						type="text"
 						placeholder="$1.00"
 						bind:value={displayInputAmount}
-						on:blur={convertAmountForDisplay}
+						on:blur={() => {
+							convertAmountForDisplay();
+							updatePaymentRequest();
+						}}
 						required
 					/><!-- Payment Amount -->
 				</div>
@@ -314,8 +331,6 @@
 						required
 					/><!-- Reference Id -->
 				</div>
-
-				<h3 class="form-section-title">Billing Details</h3>
 				<!-- BILLING DETAILS -->
 				<div class="form-flex">
 					<div class="form-control">
