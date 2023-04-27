@@ -21,6 +21,7 @@ export const POST: RequestHandler = async ({ request }) => {
         email_address,
         given_name,
         family_name,
+        referenceId,
         address } = await request.json();
 
     // create key for unique request to Square
@@ -36,7 +37,10 @@ export const POST: RequestHandler = async ({ request }) => {
                 amount,
                 currency: 'USD'
             },
-            buyerEmailAddress: email_address
+            buyerEmailAddress: email_address,
+            billingAddress: address,
+            note: `Billing Reference ID: #${referenceId}`,
+            statementDescriptionIdentifier: referenceId,
         })
 
         const result = JSON.stringify(payment, (key, value) => {

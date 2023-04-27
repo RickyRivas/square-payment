@@ -22,7 +22,7 @@
 		addressLine1: '',
 		addressLine2: '',
 		administrativeDistrictLevel1: 'AL',
-		administrativeDistrictLevel2: '',
+		locality: 'Tulsa',
 		postalCode: '',
 		country: 'US'
 	};
@@ -117,7 +117,8 @@
 				email_address,
 				given_name,
 				family_name,
-				address
+				address,
+				referenceId
 			})
 		});
 
@@ -207,7 +208,7 @@
 <SubNav {pageTitle} />
 <main id="checkout">
 	<div class="container">
-		<h2 class="section-title">Custom Checkout</h2>
+		<h2 class="section-title">Payment</h2>
 		<div class="card-container-wrap">
 			<form
 				on:submit|preventDefault={() => {
@@ -296,7 +297,7 @@
 							name="City"
 							type="text"
 							placeholder="City"
-							bind:value={address.administrativeDistrictLevel2}
+							bind:value={address.locality}
 						/><!-- City -->
 					</div>
 					<StateSelect
