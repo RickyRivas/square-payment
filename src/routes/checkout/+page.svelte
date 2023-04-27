@@ -45,7 +45,7 @@
 				// Generic error message if digital payment somehow was canceled
 				msg = 'Process has been canceled.';
 			} else {
-				msg = error.message;
+				msg = 'Please make sure your card information is correct.';
 			}
 			showModal = true;
 			loading = false;
