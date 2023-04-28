@@ -5,6 +5,7 @@
 	import currency from '../currency';
 	import StateSelect from '$lib/components/StateSelect.svelte';
 	import { fade } from 'svelte/transition';
+	import validator from 'validator';
 
 	// styles
 	import '$styles/checkout/main.css';
@@ -15,9 +16,9 @@
 	const { SQUARE_APPLICATION_ID, LOCATION_ID } = data;
 
 	// User Data
-	let given_name: string | undefined;
+	let given_name: string | undefined = '';
 	let family_name: string | undefined;
-	let email_address: string | undefined;
+	let email_address: string | undefined = '';
 	let address = {
 		addressLine1: '',
 		addressLine2: '',
@@ -69,6 +70,23 @@
 		}
 
 		/*                                 VALIDATE FORM FIELDS                           */
+		const isEmailValid = validator.isEmail(email_address);
+		if (!isEmailValid) {
+			showModal = true;
+			msg = 'Please make sure your info is correct';
+			return;
+		}
+		const isFnameValid = validator.isLength(given_name, {
+			min: 1,
+			max: 65
+		});
+		if (!isFnameValid) {
+			showModal = true;
+			msg = 'Please make sure your info is correct';
+			return;
+		}
+
+		console.log(isEmailValid, isFnameValid);
 		// const form = document.querySelector('#payment-form');
 		// const formData = Object.fromEntries(new FormData(form));
 
