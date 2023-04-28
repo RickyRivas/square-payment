@@ -69,17 +69,17 @@
 		}
 
 		/*                                 VALIDATE FORM FIELDS                           */
-		const form = document.querySelector('#payment-form');
-		const formData = Object.fromEntries(new FormData(form));
+		// const form = document.querySelector('#payment-form');
+		// const formData = Object.fromEntries(new FormData(form));
 
-		try {
-			await ValidateForm(formData);
-			console.log('Form was successfully validated.');
-		} catch (e) {
-			showModal = true;
-			msg = e.message;
-			return;
-		}
+		// try {
+		// 	await ValidateForm(formData);
+		// 	console.log('Form was successfully validated.');
+		// } catch (e) {
+		// 	showModal = true;
+		// 	msg = e.message;
+		// 	return;
+		// }
 
 		// Define the payment method for checking
 		if (paymentMethod.methodType === 'Card') {
