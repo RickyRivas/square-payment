@@ -48,7 +48,7 @@
 		if (!formHasBeenValidated) {
 			showModal = true;
 			msg = 'Make sure all fields are filled out.';
-			throw new Error('Please make sure you filled out the correct fields.');
+			return;
 		}
 
 		// Define the payment method for checking
@@ -348,17 +348,16 @@
 		}
 
 		// postal
-		const postalValid = validator.isLength(address.postalCode, { min: 5, max: 5 });
+		const postalValid = validator.isPostalCode(address.postalCode, 'US');
 		if (!postalValid) {
 			validatedFields.find((f) => f.name === 'postal').error = true;
 		} else {
 			validatedFields.find((f) => f.name === 'postal').error = false;
 		}
 
-		// if any of the fields have errors, this will return a false value thus preventing the process from going to tokenization
+		// if any of the fields have errors, this entire func will return a false value thus preventing the process from going to tokenization
 		let allFieldsAreValidated = true;
 		for (const fields of validatedFields) {
-			console.log(fields);
 			if (fields.error == true) {
 				const item = document.querySelector(`input#${fields.name}`);
 				item.classList.add('validate-error');
