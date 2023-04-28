@@ -17,7 +17,7 @@
 
 	// User Data
 	let given_name: string | undefined = '';
-	let family_name: string | undefined;
+	let family_name: string | undefined = '';
 	let email_address: string | undefined = '';
 	let address = {
 		addressLine1: '',
@@ -28,35 +28,7 @@
 		country: 'US'
 	};
 	let receipt_url: string | undefined;
-	let referenceId: string | undefined;
-
-	async function ValidateForm(formData) {
-		const response = await fetch('/api/zod', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-
-			body: JSON.stringify(formData)
-		});
-
-		const data = await response.json();
-		const { errors } = data;
-
-		/* get form fields and show error in ui */
-		if (errors) {
-			for (const name in errors) {
-				const selectedItem = document.querySelector(`input#${name}`);
-				selectedItem.classList.add('validate-error');
-				selectedItem.nextElementSibling.textContent = errors[name][0];
-			}
-		}
-
-		/* Error msg for modal*/
-		if (errors) {
-			throw new Error('Please make sure you filled out the correct fields.');
-		}
-	}
+	let referenceId: string | undefined = '';
 
 	async function handlePaymentMethodSubmission(paymentMethod) {
 		// reset all form handling if any
@@ -70,34 +42,14 @@
 		}
 
 		/*                                 VALIDATE FORM FIELDS                           */
-		const isEmailValid = validator.isEmail(email_address);
-		if (!isEmailValid) {
-			showModal = true;
-			msg = 'Please make sure your info is correct';
-			return;
-		}
-		const isFnameValid = validator.isLength(given_name, {
-			min: 1,
-			max: 65
-		});
-		if (!isFnameValid) {
-			showModal = true;
-			msg = 'Please make sure your info is correct';
-			return;
-		}
 
-		console.log(isEmailValid, isFnameValid);
-		// const form = document.querySelector('#payment-form');
-		// const formData = Object.fromEntries(new FormData(form));
+		const formHasBeenValidated = validateForm();
 
-		// try {
-		// 	await ValidateForm(formData);
-		// 	console.log('Form was successfully validated.');
-		// } catch (e) {
-		// 	showModal = true;
-		// 	msg = e.message;
-		// 	return;
-		// }
+		if (!formHasBeenValidated) {
+			showModal = true;
+			msg = 'Make sure all fields are filled out.';
+			throw new Error('Please make sure you filled out the correct fields.');
+		}
 
 		// Define the payment method for checking
 		if (paymentMethod.methodType === 'Card') {
@@ -305,6 +257,117 @@
 				total: { amount: displayInputAmount.replace('$', ''), label: 'Total' }
 			});
 		}
+	}
+
+	/*                      FORM VALIDATION FUNCS                           */
+	const validatedFields = [
+		{
+			name: 'fname',
+			error: false,
+			errorMessage: 'First name is required!'
+		},
+		{
+			name: 'lname',
+			error: false,
+			errorMessage: 'Last name is required!'
+		},
+		{
+			name: 'email',
+			error: false,
+			errorMessage: 'Valid email is required!'
+		},
+		{
+			name: 'address1',
+			error: false,
+			errorMessage: 'Address is required!'
+		},
+		{
+			name: 'city',
+			error: false,
+			errorMessage: 'City is required!'
+		},
+		{
+			name: 'referenceid',
+			error: false,
+			errorMessage: 'Reference Id is required!'
+		},
+		{
+			name: 'postal',
+			error: false,
+			errorMessage: 'Postal / Zip is required!'
+		}
+	];
+
+	function validateForm() {
+		// First Name
+		const fnameIsValid = validator.isLength(given_name, { min: 1, max: 65 });
+		if (!fnameIsValid) {
+			validatedFields.find((f) => f.name === 'fname').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'fname').error = false;
+		}
+
+		// Last Name
+		const lnameIsValid = validator.isLength(family_name, { min: 1, max: 65 });
+		if (!lnameIsValid) {
+			validatedFields.find((f) => f.name === 'lname').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'lname').error = false;
+		}
+
+		// email
+		const emailIsValid = validator.isEmail(email_address);
+		if (!emailIsValid) {
+			validatedFields.find((f) => f.name === 'email').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'email').error = false;
+		}
+
+		// address1
+		const addressValid = validator.isLength(address.addressLine1, { min: 1, max: 65 });
+		if (!addressValid) {
+			validatedFields.find((f) => f.name === 'address1').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'address1').error = false;
+		}
+
+		// city
+		const cityValid = validator.isLength(address.locality, { min: 1, max: 65 });
+		if (!cityValid) {
+			validatedFields.find((f) => f.name === 'city').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'city').error = false;
+		}
+
+		// reference id
+		const refValid = validator.isLength(referenceId, { min: 1, max: 65 });
+		if (!refValid) {
+			validatedFields.find((f) => f.name === 'referenceid').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'referenceid').error = false;
+		}
+
+		// postal
+		const postalValid = validator.isLength(address.postalCode, { min: 5, max: 5 });
+		if (!postalValid) {
+			validatedFields.find((f) => f.name === 'postal').error = true;
+		} else {
+			validatedFields.find((f) => f.name === 'postal').error = false;
+		}
+
+		// if any of the fields have errors, this will return a false value thus preventing the process from going to tokenization
+		let allFieldsAreValidated = true;
+		for (const fields of validatedFields) {
+			console.log(fields);
+			if (fields.error == true) {
+				const item = document.querySelector(`input#${fields.name}`);
+				item.classList.add('validate-error');
+				item.nextElementSibling.textContent = fields.errorMessage;
+				allFieldsAreValidated = false;
+			}
+		}
+
+		return allFieldsAreValidated;
 	}
 
 	// MODAL
