@@ -35,6 +35,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
+
 			body: JSON.stringify(formData)
 		});
 
@@ -42,10 +43,12 @@
 		const { errors } = data;
 
 		/* get form fields and show error in ui */
-		for (const name in errors) {
-			const selectedItem = document.querySelector(`input#${name}`);
-			selectedItem.classList.add('validate-error');
-			selectedItem.nextElementSibling.textContent = errors[name][0];
+		if (errors) {
+			for (const name in errors) {
+				const selectedItem = document.querySelector(`input#${name}`);
+				selectedItem.classList.add('validate-error');
+				selectedItem.nextElementSibling.textContent = errors[name][0];
+			}
 		}
 
 		/* Error msg for modal*/
