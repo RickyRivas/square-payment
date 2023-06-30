@@ -20,6 +20,20 @@
 	// logic
 	const thisPage = pages.find((p) => p.path === $page.route.id);
 	const pageTitle = $page.route.id?.slice(1);
+
+	// file size upload
+	let fileUploadInput: any;
+	function checkFileSize() {
+		const file = fileUploadInput.files[0];
+		const fileSize = file.size / 1024 / 1024;
+
+		if (fileSize > 8) {
+			fileUploadInput.value = '';
+			console.log('Large file!', fileSize);
+		} else {
+			// Upload the file
+		}
+	}
 </script>
 
 <svelte:head>
@@ -81,6 +95,11 @@
 						placeholder="Hey business, I need help with..."
 					/>
 				</div>
+
+				<div class="form-control">
+					<label for="message-input">Upload file</label>
+					<input name="file" type="file" bind:this={fileUploadInput} on:change={checkFileSize} />
+				</div>
 				<button id="submit">
 					<span> Submit Form </span>
 				</button>
@@ -113,7 +132,6 @@
 					title="Business Location"
 					id="map"
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d206181.47982743487!2d-95.87801045!3d36.1523015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b692b8ddd12e8f%3A0xe76910c81bd96af7!2sTulsa%2C%20OK!5e0!3m2!1sen!2sus!4v1661391546906!5m2!1sen!2sus"
-					allowfullscreen=""
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
 				/>

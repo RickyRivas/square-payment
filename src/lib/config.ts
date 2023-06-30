@@ -23,7 +23,12 @@ export const pages = [
 		pageName: 'contact',
 		path: '/contact',
 		metaDescription: ''
-	}
+	},
+	{
+		pageName: 'store',
+		path: '/store',
+		metaDescription: ''
+	},
 ]
 export const businessHours = {
 	monday: '',
