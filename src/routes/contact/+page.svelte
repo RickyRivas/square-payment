@@ -53,7 +53,13 @@
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nemo sint tenetur non maxime
 				alias!
 			</p>
-			<form id="contact-form" method="post" name="contact" netlify="true">
+			<form
+				id="contact-form"
+				method="post"
+				name="contact"
+				netlify="true"
+				enctype="multipart/form-data"
+			>
 				<input type="hidden" name="form-name" value="contact" />
 
 				<div class="form-control">
