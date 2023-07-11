@@ -104,7 +104,13 @@
 
 				<div class="form-control">
 					<label for="message-input">Upload file</label>
-					<input name="file" type="file" bind:this={fileUploadInput} on:change={checkFileSize} />
+					<input
+						name="file"
+						type="file"
+						bind:this={fileUploadInput}
+						on:change={checkFileSize}
+						accept="image/*"
+					/>
 				</div>
 				<button id="submit">
 					<span> Submit Form </span>
